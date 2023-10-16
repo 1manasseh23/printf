@@ -1,4 +1,4 @@
 # printf
 
 this is for the printf project,
- by : 1manasseh/
+ by : 1manasseh / Ahamefulachibundu
