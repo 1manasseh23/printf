@@ -1,55 +1,79 @@
-#include <stdarg.h>
 #include "main.h"
+#include <stdio.h>
+#include <stdarg.h>
+
+int print_binary(unsigned int value);
 
 /**
- * binary_recursion - recursion to print binary numbers
- * @num: number to convert
+ * myb_printf - A function to print binary
+ * @format: Arguments
  * Return: 0
  */
-int binary_recursion(unsigned int num)
+
+int myb_printf(const char *format, ...)
 {
-	if (num > 1)
-		binary recursion(num / 2);
-	_putchar('0' + (num % 2));
-	char_count++;
-}
+	int prt_ch = 0, value;
+	va_list args;
 
-/**
- * binary_printf - converts argument to binary
- * @format: arguments to be passed
- * Return: Character count
- */
-
-int binary_printf(const char *format, ...)
-{
-	va_list arguments;
-
-	va_start(arguments, format);
-
-	int char_count = 0;
+	va_start(args, format);
 
 	while (*format)
 	{
 		if (*format == '%')
 		{
 			format++;
-			switch (*format)
+			if (*format == 'b')
 			{
-				case 'b':
-					unsigned int value;
-
-					value = (va_arg(arguments, unsigned int));
-					binary_recursion(value);
-					break;
+				value = va_arg(args, unsigned int);
+				prt_ch += print_binary(value);
+			}
+			else
+			{
+				continue;
 			}
 		}
 		else
 		{
-			_putchar(*format);
-			char_count++;
+			putchar(*format);
+			prt_ch++;
 		}
 		format++;
 	}
-	va_end(arguments);
-	return (char_count);
+	va_end(args);
+	return (prt_ch);
+}
+
+/**
+ * print_binary - A helper function to print binary
+ * @value: The value to check for
+ * Return: 0
+ */
+
+int print_binary(unsigned int value)
+{
+	int prt_ch = 0;
+	unsigned int mask;
+	int lead_z = 1;
+
+	if (value == 0)
+	{
+		putchar(0);
+		prt_ch++;
+	}
+	else
+	{
+		mask = 1 << (sizeof(value) * 8 - 1);
+
+		while (mask > 0)
+		{
+			if ((value & mask) || !lead_z)
+			{
+				putchar((value & mask) ? '1' : '0');
+				prt_ch++;
+				lead_z = 0;
+			}
+			mask >>= 1;
+		}
+	}
+	return (prt_ch);
 }
