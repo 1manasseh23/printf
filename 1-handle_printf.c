@@ -2,18 +2,17 @@
 #include "main.h"
 
 /**
- * str_char_printf - Prints the content %s and %c format specifiers
+ * _printf - Prints the content %s and %c format specifiers
  * @format: The format to check for
  * Return: character count
  */
 
-int str_char_printf(const char *format, ...)
+int _printf(const char *format, ...)
 {
 	va_list arguments;
+	char *str;
 
 	va_start(arguments, format);
-
-	int char_count = 0;
 
 	while (*format)
 	{
@@ -25,15 +24,13 @@ int str_char_printf(const char *format, ...)
 			{
 				case 'c':
 					_putchar(va_arg(arguments, int));
-					char_count++;
 					break;
 				case 's':
-					char *str = va_arg(arguments, char*);
+					str = va_arg(arguments, char*);
 
 					while (*str)
 					{
 						_putchar(*str);
-						char_count++;
 						str++;
 					}
 					break;
@@ -41,9 +38,8 @@ int str_char_printf(const char *format, ...)
 		}
 		else
 			_putchar(*format);
-			char_count++;
 		format++;
 	}
 	va_end(arguments);
-	return (char_count);
+	return (0);
 }
