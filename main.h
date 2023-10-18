@@ -17,5 +17,20 @@ int uox_printf(const char *format, ...);
 int flag_printf(const char *format, ...);
 int handle_decimal(int value, int flag_plus, int flag_space, int flag_hash);
 char handle_str(int value, int flag_plus, int flag_space, int flag_hash);
+int handle_float(double value, int precision);
+int handle_exponential(double value, int precision);
+int handle_string(char *str, int precision);
+int myhp_printf(const char *format, ...);
+int handle_decimal(int value, int zero_flag);
+int handle_string(char *str, int zero_flag);
+int h0_printf(const char *format, ...);
+int dash_printf(const char format, ...);
+int handle_decimal(int value, int left_dash);
+int handle_string(char *str, int left_dash);
+int r_printf(const char *format, ...);
+int handle_rev_string(char *str);
+void rot_encode(char *str);
+int R_printf(const char *format, ...);
+int _buffer_printf(const char *format, ...);
 
 #endif
