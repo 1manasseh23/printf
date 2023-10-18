@@ -1,4 +1,4 @@
-#include "inno.h"
+#include "main.h"
 #include <stdio.h>
 #include <stdarg.h>
 
@@ -10,7 +10,7 @@
 
 int width_printf(const char *format, ...)
 {
-	int char_count = 0;
+	int char_count = 0, width = 0;
 	va_list args;
 
 	va_start(args, format);
@@ -20,11 +20,9 @@ int width_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			int width = 0;
-
 			if (*format >= '0' && *format <= '9')
 			{
-				while (*farmat >= '0' && *format <= '9')
+				while (*format >= '0' && *format <= '9')
 				{
 					width = width * 10 + (*format - '0');
 					format++;
@@ -34,10 +32,10 @@ int width_printf(const char *format, ...)
 			{
 				case 'd':
 				case 'i':
-					char_count += handle_decimal(va_arg(args, int), width);
+					char_count += handle_dec(va_arg(args, int), width);
 					break;
 				case 's':
-					char_count += handle_string(va_arg(args, char*), width);
+					char_count += handle_st(va_arg(args, char*), width);
 					break;
 			}
 		}
@@ -53,13 +51,13 @@ int width_printf(const char *format, ...)
 }
 
 /**
- * handle_decimal - Handles decimal
+ * handle_dec - Handles decimal
  * @value: The value
  * @width: The width
  * Return: character count
  */
 
-int handle_decimal(int value, int width)
+int handle_dec(int value, int width)
 {
 	int char_count = 0;
 	char buffer[20];
@@ -83,13 +81,13 @@ int handle_decimal(int value, int width)
 }
 
 /**
- * handle_string - Handles string
+ * handle_st - Handles string
  * @str: the string
  * @width: The width
  * Return: character count
  */
 
-int handle_string(char *str, int width)
+int handle_st(char *str, int width)
 {
 	int char_count = 0;
 	int len = strlen(str);

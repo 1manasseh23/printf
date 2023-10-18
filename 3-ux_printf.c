@@ -11,11 +11,10 @@
 
 int uox_printf(const char *format, ...)
 {
-	int prt_ch = 0;
+	unsigned int prt_ch = 0, u_value, o_value, x_value, X_value;
 	va_list args;
 
 	va_start(args, format);
-	unsigned int u_value, o_value, x_value, X_value;
 
 	while (*format)
 	{
@@ -38,7 +37,7 @@ int uox_printf(const char *format, ...)
 					break;
 				case 'X':
 					X_value = va_arg(args, unsigned int);
-					prt_ch += print_hexadecimal(X_value, 1)
+					prt_ch += print_hexadecimal(X_value, 1);
 					break;
 			}
 		}
@@ -69,8 +68,8 @@ int print_unsigned_int(unsigned int value)
  */
 int print_octal(unsigned int value)
 {
-	printf("%o", 0, value);
-	return (snprintf(NULL, "%o", value));
+	printf("%o", value);
+	return (snprintf(NULL, 0, "%o", value));
 }
 /**
  * print_hexadecimal - A helper function to handle
@@ -85,8 +84,7 @@ int print_hexadecimal(unsigned int value, int uppercase)
 
 	char hex_buffer[20];
 
-	char i = 0;
-	int x;
+	int i = 0, x;
 
 	while (value > 0)
 	{
