@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-int print_pointer(str);
 /**
  * myp_printf - A function that handile convrsion specifier p
  * @format: The format to check
@@ -17,8 +16,6 @@ int myp_printf(const char *format, ...)
 
 	va_start(args, format);
 
-	void *ptr;
-
 	while (*format)
 	{
 		if (*format == '%')
@@ -27,8 +24,9 @@ int myp_printf(const char *format, ...)
 
 			if (*format == 'p')
 			{
+				void *ptr;
 				ptr = va_arg(args, void*);
-				prt_ch += print_pointer(ptr)
+				prt_ch += print_pointer(ptr);
 			}
 		}
 		else
@@ -48,7 +46,8 @@ int myp_printf(const char *format, ...)
  */
 int print_pointer(void *ptr)
 {
-	int prt_ch = printf("%p", ptr);
+	int prt_ch;
+	prt_ch = printf("%p", ptr);
 
 	return (prt_ch);
 }

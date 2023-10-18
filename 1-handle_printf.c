@@ -2,12 +2,12 @@
 #include "main.h"
 
 /**
- * _printf - Prints the content %s and %c format specifiers
+ * char_str_printf - Prints the content %s and %c format specifiers
  * @format: The format to check for
  * Return: character count
  */
 
-int _printf(const char *format, ...)
+int char_str_printf(const char *format, ...)
 {
 	va_list arguments;
 	char *str;

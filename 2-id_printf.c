@@ -10,13 +10,11 @@
 
 int id_printf(const char *format, ...)
 {
-	int prt_ch = 0;
+	int prt_ch = 0, value;
 
-	va_list arg;
+	va_list args;
 
 	va_start(args, format);
-
-	int value;
 
 	while (*format)
 	{
@@ -38,5 +36,5 @@ int id_printf(const char *format, ...)
 		format++;
 	}
 	va_end(args);
-	return (ptr_ch);
+	return (prt_ch);
 }

@@ -9,6 +9,7 @@
  * Return: character count
  */
 
+/**
 int _printf(const char *format, ...)
 {
 	int char_count = 0, d_value;
@@ -56,6 +57,7 @@ int _printf(const char *format, ...)
 	va_end(args);
 	return (char_count);
 }
+*/
 
 /**
  * handle_decimal - handles decimals
@@ -65,7 +67,7 @@ int _printf(const char *format, ...)
  * @flag_hash: checks for hash
  * Return: 0
  */
-
+/*
 int handle_decimal(int value, int flag_plus, int flag_space, int flag_hash)
 {
 	int char_count = 0;
@@ -92,6 +94,7 @@ int handle_decimal(int value, int flag_plus, int flag_space, int flag_hash)
 	return (snprintf(NULL, 0, "%d", value));
 
 }
+*/
 
 /**
  * handle_str - handles the string
@@ -101,7 +104,7 @@ int handle_decimal(int value, int flag_plus, int flag_space, int flag_hash)
  * @flag_hash: checks for hash
  * Return: length of string
  */
-
+/*
 int handle_str(char *str, int flag_plus, int flag_space, int flag_hash)
 {
 	if (flag_plus)
@@ -112,4 +115,80 @@ int handle_str(char *str, int flag_plus, int flag_space, int flag_hash)
 		putchar(' ');
 	printf("%s", str);
 	return (strlen(str));
+}
+*/
+#include <stdio.h>
+#include <stdarg.h>
+#include "main.h"
+
+void flags_printf(const char *format, ...)
+{
+	va_list args;
+	int plus_flag = 0, space_flag = 0, hash_flag = 0;
+
+	va_start(args, format);
+	while (*format)
+	{
+		if (*format == '%')
+		{
+			format++;
+			while (*format == '+' || *format == ' ' || *format == '#')
+			{
+				if (*format == '+')
+				{
+					plus_flag = 1;
+				}
+				else if (*format == ' ')
+				{
+					space_flag = 1;
+				}
+				else if (*format == '#')
+				{
+					hash_flag = 1;
+				}
+				format++;
+			}
+			if (plus_flag)
+			{
+				int num = va_arg(args, int);
+				if (num >= 0)
+				{
+					putchar('+');
+				}
+				printf("%d", num);
+			}
+			else if (space_flag)
+			{
+				int num = va_arg(args, int);
+				if (num >= 0)
+				{
+					putchar(' ');
+				}
+				printf("%d", num);
+			}
+			else if (hash_flag)
+			{
+				int num = va_arg(args, int);
+				if (*format == 'o')
+				{
+					printf("0%o", num);
+				} 
+				else if (*format == 'x' || *format == 'X')
+				{
+					printf("0%s%x", (*format == 'X') ? "X" : "x", num);
+				}
+			}
+			else
+			{
+				putchar('%');
+				putchar(*format);
+			}
+		}
+		else
+		{
+			putchar(*format);
+		}
+		format++;
+	}
+	va_end(args);
 }
