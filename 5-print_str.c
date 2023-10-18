@@ -55,7 +55,7 @@ int print_str_escaped(char *str)
 	{
 		if ((*str >= 1 && *str <= 31) || *str >= 127)
 		{
-			printf("\\x%O2X", (unsigned char)*str);
+			printf("\\x%02X", (unsigned char)*str);
 			prt_ch += 4;
 		}
 		else
