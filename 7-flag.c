@@ -4,7 +4,7 @@
 
 /**
  * flag_printf - prints the flag
- * @format: arguments to be passed
+* @format: arguments to be passed
  * Return: character count
  */
 
