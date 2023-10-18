@@ -15,7 +15,6 @@ int s_printf(const char *format, ...)
 	va_list args;
 
 	va_start(args, format);
-	char *str;
 
 	while (*format)
 	{
@@ -24,6 +23,8 @@ int s_printf(const char *format, ...)
 			format++;
 			if (*format == 'S')
 			{
+				char *str;
+
 				str = va_arg(args, char*);
 				prt_ch += print_str_escaped(str);
 			}
@@ -31,7 +32,7 @@ int s_printf(const char *format, ...)
 		else
 		{
 			putchar(*format);
-			prt_ch++
+			prt_ch++;
 		}
 		format++;
 	}
