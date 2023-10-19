@@ -25,6 +25,7 @@ int myp_printf(const char *format, ...)
 			if (*format == 'p')
 			{
 				void *ptr;
+
 				ptr = va_arg(args, void*);
 				prt_ch += print_pointer(ptr);
 			}
@@ -47,6 +48,7 @@ int myp_printf(const char *format, ...)
 int print_pointer(void *ptr)
 {
 	int prt_ch;
+
 	prt_ch = printf("%p", ptr);
 
 	return (prt_ch);

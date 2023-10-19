@@ -6,14 +6,17 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
-
+/**
+ * struct format - A helpper function checks for all the _printf format
+ * @id: The id to check in the array
+ * @f: The format to check
+ * Return: 1
+ */
 typedef struct format
 {
 	const char *id;
-	int (*f)(const char *, ...); 
+	int (*f)(const char *, ...);
 } match;
-
-
 int _printf(const char *format, ...);
 int _putchar(char c);
 int char_str_printf(const char *format, ...);
@@ -48,5 +51,4 @@ int _buffer_printf(const char *format, ...);
 int handle_dec(int value, int width);
 int handle_st(char *str, int width);
 void flags_printf(const char *format, ...);
-
 #endif
