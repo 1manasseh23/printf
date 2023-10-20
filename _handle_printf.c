@@ -50,9 +50,14 @@ int _vprintf(const char *format, va_list args)
 				case 'p':
 					printed = handle_p(args);
 					break;
+				case '%':
+					putchar('%');
+					printed = 1;
+					break;
 				default:
+					putchar('%');
 					putchar(*format);
-					length += 2;
+					printed = 2;
 			}
 			length += printed;
 		}
