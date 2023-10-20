@@ -16,12 +16,11 @@ int handle_r(va_list args)
 	int len, i;
 
 	len = strlen(str);
-	for (i = len - 1; i >= 0; i--) 
-		
+
+	for (i = len - 1; i >= 0; i--)
 	{
 		write_char(str[i]);
 		printed++;
 	}
-	return printed;
+	return (printed);
 }
-
