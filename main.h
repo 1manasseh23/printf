@@ -10,5 +10,6 @@ int _vprintf(const char *format, va_list args);
 int _printf(const char *format, ...);
 int handle_o(va_list args);
 int handle_x(va_list args);
+int handle_X(va_list args);
 int handle_p(va_list args);
 #endif
