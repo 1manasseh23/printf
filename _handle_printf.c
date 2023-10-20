@@ -41,8 +41,10 @@ int _vprintf(const char *format, va_list args)
 					printed = handle_u(args);
 					break;
 				case 'x':
-				case 'X':
 					printed = handle_x(args);
+					break;
+				case 'X':
+					printed = handle_X(args);
 					break;
 				case 'o':
 					printed = handle_o(args);
