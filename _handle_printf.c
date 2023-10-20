@@ -51,7 +51,6 @@ int _vprintf(const char *format, va_list args)
 					printed = handle_p(args);
 					break;
 				default:
-					putchar('%');
 					putchar(*format);
 					length += 2;
 			}
