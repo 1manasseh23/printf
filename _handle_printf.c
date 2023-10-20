@@ -55,9 +55,6 @@ int _vprintf(const char *format, va_list args)
 				case 'r':
 					printed = handle_r(args);
 					break;
-				case 'b':
-					printed = handle_b(args);
-					break;
 				case 'S':
 					printed = handle_S(args);
 					break;

@@ -11,22 +11,21 @@
 int handle_S(va_list args)
 {
 	char *str = va_arg(args, char *);
-	int printed = 0, i;
+	int printed = 0;
 
-	if (str == NULL)
+	while (*str)
 	{
-		return (fputs("(null)", stdout));
-	}
-	for (i = 0; str[i] != '\0'; i++)
-	{
-		if (str[i] < 32 || str[i] >= 127)
+		if ((*str >= 1 && *str <= 31) || *str >= 127)
 		{
-			printed += printf("\\x%02X", (unsigned char)str[i]);
+			printf("\\x%02X", (unsigned char)*str);
+			printed += 4;
 		}
 		else
 		{
-			printed += putchar(str[i]);
+			putchar(*str);
+			printed++;
 		}
+		str++;
 	}
 	return (printed);
 }
