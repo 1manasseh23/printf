@@ -11,6 +11,14 @@
 int handle_s(va_list args)
 {
 	char *str = va_arg(args, char *);
+	int length = 0;
 
-	return (fputs(str, stdout));
+	while (*str)
+	{
+		putchar(*str);
+		length++;
+		str++;
+	}
+	return (length);
+
 }
