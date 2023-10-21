@@ -10,6 +10,7 @@
 typedef int (*format_handler)(va_list args);
 void write_char(char c);
 void flush_buffer();
+int _putchar(char c);
 int handle_c(va_list args);
 int handle_s(va_list args);
 int handle_d(va_list args);
@@ -23,5 +24,6 @@ int handle_p(va_list args);
 int handle_r(va_list args);
 int handle_b(va_list args);
 int handle_S(va_list args);
+int handle_percent(va_list args);
 
 #endif
