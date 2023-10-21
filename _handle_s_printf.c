@@ -15,9 +15,14 @@ int handle_s(va_list args)
 
 	while (*str)
 	{
-		putchar(*str);
-		length++;
-		str++;
+		if (str == NULL)
+			printf("(nil)");
+		else
+		{
+			putchar(*str);
+			length++;
+			str++;
+		}
 	}
 	return (length);
 
