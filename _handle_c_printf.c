@@ -12,5 +12,6 @@ int handle_c(va_list args)
 {
 	int c = va_arg(args, int);
 
-	return (putchar(c));
+	putchar(c);
+	return (0);
 }
