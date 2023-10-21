@@ -59,8 +59,13 @@ int _vprintf(const char *format, va_list args)
 					printed = handle_S(args);
 					break;
 				case '%':
-					printed = handle_percent(args);
+					putchar('%');
+					printed = 1;
 					break;
+				default:
+					putchar('%');
+					putchar(*format);
+					printed = 2;
 			}
 			length += printed;
 		}
