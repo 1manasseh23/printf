@@ -11,7 +11,7 @@
 
 int _vprintf(const char *format, va_list args)
 {
-	int length = 0;
+	int length = 0, i;
 	int printed;
 
 	while (*format)
@@ -31,8 +31,27 @@ int _vprintf(const char *format, va_list args)
 					printed = handle_c(args);
 					break;
 				case 's':
-					printed = handle_s(args);
-					break;
+					{
+						char *str = va_arg(args, char *);
+						if (str == NULL)
+						{
+							for (i = 0; "(null)"[i] != '\0'; i++)
+							{
+								putchar("(null)"[i]);
+							}
+							length += 6;
+						}
+						else
+						{
+							while (*str)
+							{
+								putchar(*str);
+								length++;
+								str++;
+							}
+						}
+						break;
+					}
 				case 'd':
 				case 'i':
 					printed = handle_d(args);
